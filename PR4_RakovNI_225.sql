@@ -53,7 +53,7 @@ CREATE TABLE public.reception_patients (
 	patient_id int4 NOT NULL,
 	quintation_price numeric NULL,
 	deduction_price numeric NULL,
-	salary numeric GENERATED ALWAYS AS (quintation_price * deduction_price * 0.87) STORED NULL,
+	salary numeric GENERATED ALWAYS AS (quintation_price * (deduction_price / 100) * 0.87) STORED NULL,
 	CONSTRAINT reception_patients_pkey PRIMARY KEY (reception_patients_id),
 	CONSTRAINT reception_patients_medical_fk FOREIGN KEY (medical_id) REFERENCES public.medical(medical_id),
 	CONSTRAINT reception_patients_patient_fk FOREIGN KEY (patient_id) REFERENCES public.patient(patient_id)
